@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">空氣污染</string>
+    <string name="action_settings">設置</string>
+    <string name="search_title">搜尋</string>
+    <string name="status_good">良好</string>
+    <string name="status_good_to_go">The status is good, we want to go out to have fun</string>
+    <string name="loading">讀取中</string>
+    <string name="enter_keyword">輸入『站名』查詢該地區空污資訊</string>
+    <string name="search_not_found">找不到『%1$s』相關空污資訊</string>
+</resources>

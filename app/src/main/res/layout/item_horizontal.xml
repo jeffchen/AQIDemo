@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="viewModel"
+            type="com.jychy.aqidemo.viewmodel.MainViewModel" />
+        <variable
+            name="record"
+            type="com.jychy.aqidemo.data.Record" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_view"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:elevation="5dp"
+        app:cardElevation="5dp"
+        app:cardCornerRadius="10dp"
+        app:cardBackgroundColor="@color/teal_200" >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/vertical_view_record_height"
+                android:layout_marginStart="@dimen/vertical_view_record_margin_start"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_weight="0.3"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:textSize="@dimen/vertical_view_index_text_size"
+                    android:gravity="center"
+                    android:text="@{record.siteid}" />
+
+                <TextView
+                    android:id="@+id/site_name"
+                    android:layout_weight="0.4"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:textSize="@dimen/vertical_view_site_name_text_size"
+                    android:text="@{record.sitename}" />
+
+                <TextView
+                    android:id="@+id/pm25"
+                    android:layout_weight="0.3"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:textSize="@dimen/vertical_view_site_name_text_size"
+                    android:text="@{record.pm25.empty ? `0` : record.pm25}" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/vertical_view_record_height"
+                android:layout_marginEnd="@dimen/vertical_view_record_margin_end"
+                android:orientation="horizontal" >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/vertical_view_record_height"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/county"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="@{record.county}" />
+
+                    <TextView
+                        android:id="@+id/status"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="@{record.status}" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

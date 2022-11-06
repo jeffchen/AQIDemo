@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="viewModel"
+            type="com.jychy.aqidemo.viewmodel.MainViewModel" />
+        <variable
+            name="record"
+            type="com.jychy.aqidemo.data.Record" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/vertical_view_record_height"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="@dimen/vertical_view_record_height"
+                android:layout_height="@dimen/vertical_view_record_height"
+                android:textSize="@dimen/vertical_view_index_text_size"
+                android:gravity="center"
+                android:text="@{record.siteid}" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/vertical_view_record_margin_start"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/site_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:textSize="@dimen/vertical_view_site_name_text_size"
+                    android:text="@{record.sitename}" />
+
+                <TextView
+                    android:id="@+id/county"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:textSize="@dimen/vertical_view_county_text_size"
+                    android:text="@{record.county}" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/vertical_view_record_height"
+            android:layout_marginEnd="@dimen/vertical_view_record_margin_end"
+            android:orientation="horizontal" >
+            <LinearLayout
+                android:layout_weight="0.8"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/pm25"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical|end"
+                    android:text="@{record.pm25.empty ? `0` : record.pm25}" />
+
+                <TextView
+                    android:id="@+id/status"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+
+                    android:gravity="center_vertical|end"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:text="@{record.status.equals(@string/status_good) ? @string/status_good_to_go : record.status}" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/arrow"
+                android:layout_weight="0.2"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/vertical_view_record_height"
+                android:textSize="@dimen/vertical_view_index_text_size"
+                android:gravity="center"
+                android:visibility="@{record.status.equals(@string/status_good) ? View.GONE : View.VISIBLE}"
+                android:onClick="@{(view) -> viewModel.toastTouch(view, record.sitename)}"
+                android:text=">" />
+        </LinearLayout>
+    </LinearLayout>
+</layout>

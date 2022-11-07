@@ -31,9 +31,13 @@ class MainAdapter(private val viewModel: MainViewModel, private val recyclerView
         else -> viewModel.liveData
     }
 
+    private fun needEmptyView(): Boolean {
+        return (recyclerViewType == RECYCLER_VIEW_TYPE_SEARCH) || (recyclerViewType == RECYCLER_VIEW_TYPE_VERTICAL)
+    }
+
     override fun getItemViewType(position: Int): Int {
-        // only search view need to show empty item
-        return if (list.value?.isEmpty() != false && recyclerViewType == RECYCLER_VIEW_TYPE_SEARCH) {
+        // only search view and vertical view need to show empty item
+        return if (list.value?.isEmpty() != false && needEmptyView()) {
             ITEM_VIEW_TYPE_EMPTY
         } else {
             ITEM_VIEW_TYPE_NORMAL
@@ -64,7 +68,7 @@ class MainAdapter(private val viewModel: MainViewModel, private val recyclerView
     override fun getItemCount(): Int {
         val count = list.value?.count() ?: 0
         // if view type is search view, should returning item count 1 to show empty view
-        return if (count == 0 && recyclerViewType == RECYCLER_VIEW_TYPE_SEARCH) 1 else count
+        return if (count == 0 && needEmptyView()) 1 else count
     }
 
     open class EmptyViewHolder protected constructor(private val binding: ItemEmptyBinding) :

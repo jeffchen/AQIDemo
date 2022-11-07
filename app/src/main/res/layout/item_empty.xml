@@ -19,7 +19,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="@{viewModel.searchHint}"
+                android:text="@{viewModel.searchHint.empty ? @string/loading : viewModel.searchHint}"
                 android:textColor="@android:color/darker_gray"
                 android:textSize="12sp" />
         </RelativeLayout>
